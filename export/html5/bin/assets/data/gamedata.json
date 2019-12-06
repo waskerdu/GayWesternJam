@@ -1,9 +1,72 @@
 {
-    "classes":[],
-    "genders":[],
-    "identies":[],
-    "abilities":[],
-    "jobs":[],
+    "classes":[
+        {
+            "id":"trans",
+            "name":"Trans",
+            "description":"A person who was assigned the wrong gender at birth.",
+            "type":"gender",
+            "abilities":["kickline"]
+        },
+        {
+            "id":"gay",
+            "name":"Gay",
+            "description":"A person who is sexually attracted to the same gender.",
+            "type":"identity",
+            "abilities":["rainbowWave"]
+        },
+        {
+            "id":"ficWriter",
+            "name":"Fanfic Author",
+            "description":"They write fan fiction. You can guess what kind.",
+            "type":"job",
+            "abilities":["ship","purpleProse"]
+        }
+    ],
+    "abilities":[
+        {
+            "id":"attack",
+            "name":"Attack!",
+            "description":"Basic physical attack",
+            "mainStat":"sass"
+        },
+        {
+            "id":"kickline",
+            "name":"Kickline",
+            "description":"Briefly boosts defense of entire party",
+            "power":-1,
+            "cost":1,
+            "targetStat":"moxie",
+            "defendStat":"none",
+            "duration":1,
+            "targetMode":"allAllies"
+        },
+        {
+            "id":"rainbowWave",
+            "name":"Rainbow Wave",
+            "description":"Does minor damage of all types to all enemies.",
+            "cost":2,
+            "duration":0,
+            "targetMode":"allEnemies",
+            "augments":["sugar","spice","glitter","milkshake"]
+        },
+        {
+            "id":"ship",
+            "name":"Ship",
+            "description":"A hot hot romance dealing moderate spice damage.",
+            "power":2,
+            "cost":2,
+            "augments":["spice"]
+        },
+        {
+            "id":"purpleProse",
+            "name":"Purple Prose",
+            "description":"I read a thesaurus today. Medium sugar damage to eeeevil!",
+            "power":2,
+            "cost":2,
+            "augments":["sugar"],
+            "targetMode":"allEnemies"
+        }
+    ],
     "augments":[],
     "elements":[],
     "weaknesses":[],
