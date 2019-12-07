@@ -30,6 +30,16 @@
             "mainStat":"sass"
         },
         {
+            "id":"defend",
+            "name":"Defend",
+            "description":"Boost your moxie",
+            "power":-1,
+            "mainStat":"sass",
+            "targetStat":"moxie",
+            "defendStat":"none",
+            "duration":1
+        },
+        {
             "id":"kickline",
             "name":"Kickline",
             "description":"Briefly boosts defense of entire party",

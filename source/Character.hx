@@ -1,5 +1,7 @@
 package;
 
+import flixel.FlxObject;
+import flixel.input.mouse.FlxMouseEventManager;
 import flixel.util.FlxColor;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
@@ -16,7 +18,7 @@ class Character extends FlxGroup{
     var moxie:Float;
     var flair:Float;
     var realness:Float;
-    var quiddity:Float;
+    var quiddity:Float = 0;
     var weaknesses:Array<String>;
     var tempWeaknesses:Array<{name:String, duration:Float}>;
     var buffs:Array<{name:String, duration:Float, mod:Float}>;
@@ -25,6 +27,9 @@ class Character extends FlxGroup{
     var job:String;
     var identity:String;
     var gender:String;
+    public var statCallback:(Array<String> -> Void);
+    public var menuCallback:(Array<MenuOption> -> Void);
+    var name = "Name";
     public function new(gameData:GameData, x:Float = 0, y:Float = 0) {
         super();
         this.x = x;
@@ -47,6 +52,7 @@ class Character extends FlxGroup{
         bottomSprite = new FlxSprite();
         add(bottomSprite);
         bottomSprite.loadGraphic("assets/Bottoms.png", true, 64,64);*/
+        FlxMouseEventManager.add(hatSprite, null, null, mouseOver, null);
     }
     override public function update(elapsed:Float) {
         hatSprite.x = x;
@@ -67,6 +73,7 @@ class Character extends FlxGroup{
         gender = data.gender;
         identity = data.identity;
         job = data.job;
+        name = data.name;
     }
     public function saveData(){
         var data:Dynamic = {
@@ -83,6 +90,7 @@ class Character extends FlxGroup{
             gender : this.gender,
             identity: this.identity,
             job : this.job,
+            name : this.name,
         }
         return data;
     }
@@ -94,9 +102,9 @@ class Character extends FlxGroup{
         var stats = new Array<Float>();
         var tempStats = new Array<Float>();
         var num:Float;
-        var goodStats = 3;
+        var goodStats = 2;
         var badStats = 0;
-        var numStats = 6;
+        var numStats = 4;
         while(tempStats.length < goodStats){
             num = (Math.random() + Math.random())/2;
             if(num > 0.6){tempStats.push(num);}
@@ -120,9 +128,9 @@ class Character extends FlxGroup{
         sass = stats[0];
         wit = stats[1];
         moxie = stats[2];
-        flair = stats[3];
-        realness = stats[4];
-        quiddity = stats[5];
+        //flair = stats[3];
+        realness = stats[3];
+        //quiddity = stats[5];
         hatSprite.animation.frameIndex = randint(0,hatSprite.animation.frames-1);
         /*headSprite.animation.frameIndex = randint(0,headSprite.animation.frames-1);
         topSprite.animation.frameIndex = randint(0,topSprite.animation.frames-1);
@@ -133,6 +141,68 @@ class Character extends FlxGroup{
         spells = spells.concat(gameData.classes[gender].abilities);
         spells = spells.concat(gameData.classes[identity].abilities);
         spells = spells.concat(gameData.classes[job].abilities);
-        trace(spells);
+        var firstNames = ["marla","winnefred","albert","ester","fenric","vanessa","edith"];
+        name = firstNames[randint(0,firstNames.length-1)];
     }
+    function mouseOver(object:FlxObject) {
+        // set stat screen
+        var stats = new Array<String>();
+        stats.push(name);
+        stats.push("");
+        stats.push("Sass: "+Math.floor(sass*10));
+        stats.push("used for physical attacks");
+        stats.push("Wit: "+Math.floor(wit*10));
+        stats.push("used for magic attacks");
+        stats.push("Moxie: "+Math.floor(moxie*10));
+        stats.push("used to defend against all attacks");
+        //stats.push("Flair: "+Math.floor(flair*10));
+        stats.push("Realness: "+Math.floor(realness*100));
+        stats.push("how much physical damage a character\n can take before being KO’d");
+        stats.push("Quiddity: "+Math.floor(quiddity));
+        stats.push("resource used for spells");
+        statCallback(stats);
+    }
+
+    function ability(name:String) {
+        return new MenuOption(
+            gameData.abilities[name].name, 
+            gameData.abilities[name].description,
+            useAbility,
+            name
+        );
+    }
+
+    public function setMenu(menu:String){
+        var menuEntries = new Array<MenuOption>();
+        if(menu == "main"){
+            menuEntries.push(ability("attack"));
+            menuEntries.push(new MenuOption(
+                "Magic",
+                "",
+                setMenu,
+                "magic"
+            ));
+            /*menuEntries.push(new MenuOption(
+                "Item",
+                "",
+                SetMenu,
+                "item"
+            ));*/
+            menuEntries.push(ability("defend"));
+        }
+        else if(menu == "magic"){
+            for(spell in spells){
+                menuEntries.push(ability(spell));
+            }
+            menuEntries.push(new MenuOption(
+                "Back",
+                "",
+                setMenu,
+                "main"
+            ));
+        }
+        menuCallback(menuEntries);
+    }
+    function useAbility(menu:String){}
+    function useItem(menu:String){}
 }
