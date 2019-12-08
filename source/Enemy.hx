@@ -23,6 +23,8 @@ class Enemy extends Actor{
             chains.push(chain);
         }
         //sprite.loadGraphic(data.sprite);
+        trace(data.sprite);
+        if(data.sprite != ""){sprite.loadGraphic(data.sprite);}
     }
 
     public function act() {

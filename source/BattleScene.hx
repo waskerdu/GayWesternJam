@@ -44,11 +44,16 @@ class BattleScene extends FlxState
 		battleManager.buttonPool = new FlxTypedGroup<Button>();
 		add(battleManager.pointer);
 		add(battleManager.buttonPool);
+		add(battleManager.victory);
+		add(battleManager.defeat);
+		add(battleManager.heroTurnNotice);
+		add(battleManager.enemyTurnNotice);
+		add(battleManager.notice);
 
-		for (i in 0...1){
+		for (i in 0...4){
 			var char = new Character(gameData);
-			char.x = 800-60;
-			char.y = 100 + i * 60;
+			char.x = 800-90 * (i+1);
+			char.y = i * 70;
 			char.randomize();
 			char.statCallback = statScreen.setContents;
 			char.menuCallback = characterMenu.setContents;
@@ -79,7 +84,7 @@ class BattleScene extends FlxState
 		label.x = 150;
 		label.y = 100;
 		label.visible = false;
-		add(label);
+		//add(label);
 		return label;
 	}
 

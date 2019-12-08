@@ -115,7 +115,7 @@
             "id":"pig",
             "name":"Pig",
             "description":"",
-            "sprite":"",
+            "sprite":"assets/images/Popo.png",
             "stats":[
                 "sass",8,
                 "wit",1,
