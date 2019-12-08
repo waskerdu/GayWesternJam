@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.util.FlxSave;
 import flixel.FlxState;
@@ -22,14 +23,15 @@ class BattleScene extends FlxState
 		gameSave = new FlxSave();
 		gameSave.bind("global");
 		statScreen = new StatScreen();
+		FlxG.sound.playMusic(AssetPaths.ChooChoo_Track02Batle__ogg);
+		trace(FlxG.sound.music);
 		statScreen.sprite.makeGraphic(320,160, FlxColor.GRAY);
 		statScreen.y = 600-160;
-		add(statScreen);
 		characterMenu = new CharacterMenu();
 		characterMenu.sprite.makeGraphic(320,160, FlxColor.GRAY);
 		characterMenu.x = 800-320;
 		characterMenu.y = 600-160;
-		add(characterMenu);
+		
 		battleManager = new BattleManager();
 		add(battleManager);
 		battleManager.victory = addLabel("Victory!",FlxColor.GREEN);
@@ -42,13 +44,6 @@ class BattleScene extends FlxState
 		battleManager.pointer.makeGraphic(10, 10, FlxColor.YELLOW);
 		battleManager.pointer.visible = false;
 		battleManager.buttonPool = new FlxTypedGroup<Button>();
-		add(battleManager.pointer);
-		add(battleManager.buttonPool);
-		add(battleManager.victory);
-		add(battleManager.defeat);
-		add(battleManager.heroTurnNotice);
-		add(battleManager.enemyTurnNotice);
-		add(battleManager.notice);
 
 		for (i in 0...4){
 			var char = new Character(gameData);
@@ -71,6 +66,15 @@ class BattleScene extends FlxState
 			add(enemy);
 			battleManager.enemies.push(enemy);
 		}
+		add(battleManager.pointer);
+		add(battleManager.buttonPool);
+		add(battleManager.victory);
+		add(battleManager.defeat);
+		add(battleManager.heroTurnNotice);
+		add(battleManager.enemyTurnNotice);
+		add(battleManager.notice);
+		add(characterMenu);
+		add(statScreen);
 		//battleManager.characters[0].setMenu("main");
 		battleManager.startHeroPhase();
 	}

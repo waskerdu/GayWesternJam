@@ -14,6 +14,7 @@ class Ability extends FlxBasic{
     public var augments:Array<String>;
     public var attackAugments:Array<String>;
     public var targetMode:String = "singleEnemy";
+    public var soundEffect:String = "";
     public function new(data:Dynamic) {
         super();
         augments = new Array<String>();
@@ -29,6 +30,7 @@ class Ability extends FlxBasic{
         if(data.augments != null){augments = data.augments;}
         if(data.attackAugments != null){attackAugments = data.attackAugments;}
         if(data.targetMode != null){targetMode = data.targetMode;}
+        if(data.soundEffect != null){soundEffect = data.soundEffect;}
     }
 
     public function use(targets:Array<Actor>, source:Actor):String {

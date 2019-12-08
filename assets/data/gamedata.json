@@ -27,7 +27,8 @@
             "id":"attack",
             "name":"Attack!",
             "description":"Basic physical attack",
-            "mainStat":"sass"
+            "mainStat":"sass",
+            "soundEffect":"assets/sounds/Attack-Physical.wav"
         },
         {
             "id":"defend",
@@ -49,7 +50,8 @@
             "targetStat":"moxie",
             "defendStat":"none",
             "duration":1,
-            "targetMode":"allHeroes"
+            "targetMode":"allHeroes",
+            "soundEffect":"assets/sounds/Attack-Magic.wav"
         },
         {
             "id":"rainbowWave",
@@ -58,7 +60,8 @@
             "cost":2,
             "duration":0,
             "targetMode":"allEnemies",
-            "augments":["sugar","spice","glitter","milkshake"]
+            "augments":["sugar","spice","glitter","milkshake"],
+            "soundEffect":"assets/sounds/Attack-Magic.wav"
         },
         {
             "id":"ship",
@@ -66,7 +69,8 @@
             "description":"A hot hot romance dealing moderate spice damage.",
             "power":2,
             "cost":2,
-            "augments":["spice"]
+            "augments":["spice"],
+            "soundEffect":"assets/sounds/Attack-Magic.wav"
         },
         {
             "id":"purpleProse",
@@ -75,14 +79,16 @@
             "power":2,
             "cost":2,
             "augments":["sugar"],
-            "targetMode":"allEnemies"
+            "targetMode":"allEnemies",
+            "soundEffect":"assets/sounds/Attack-Magic.wav"
         },
         {
             "id":"oink",
             "name":"Oink!",
             "description":"Basic physical attack",
             "mainStat":"sass",
-            "targetMode":"allHeroes"
+            "targetMode":"allHeroes",
+            "soundEffect":"assets/sounds/Enemy-Oink.wav"
         },
         {
             "id":"womp",
@@ -90,7 +96,8 @@
             "description":"Basic physical attack",
             "mainStat":"sass",
             "targetMode":"randomHero",
-            "power":2
+            "power":2,
+            "soundEffect":"assets/sounds/Enemy-Womp.wav"
         },
         {
             "id":"evict",

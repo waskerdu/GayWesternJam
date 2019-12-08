@@ -36,27 +36,23 @@ class Character extends Actor{
         hatSprite = new FlxSprite();
         add(hatSprite);
         hatSprite.loadGraphic("assets/images/Heads.png", true, 100, 100);
+        bottomSprite = new FlxSprite();
+        add(bottomSprite);
+        bottomSprite.loadGraphic("assets/images/PowerBottoms.png", true, 140, 200);
+        bottomSprite.scale.x = 0.8;
+        bottomSprite.scale.y = 0.8;
         topSprite = new FlxSprite();
         add(topSprite);
         topSprite.loadGraphic("assets/images/PowerTops.png", true, 180, 150);
-        //hatSprite.makeGraphic(50,50,FlxColor.GREEN);
-        /*hatSprite.loadGraphic("assets/Hats.png", true, 64,64);
-        headSprite = new FlxSprite();
-        add(headSprite);
-        headSprite.loadGraphic("assets/Heads.png", true, 64,64);
-        topSprite = new FlxSprite();
-        add(topSprite);
-        topSprite.loadGraphic("assets/Tops.png", true, 64,64);
-        bottomSprite = new FlxSprite();
-        add(bottomSprite);
-        bottomSprite.loadGraphic("assets/Bottoms.png", true, 64,64);*/
         FlxMouseEventManager.add(hatSprite, null, null, mouseOver, null);
     }
     override public function update(elapsed:Float) {
         hatSprite.x = x;
         hatSprite.y = y;
-        topSprite.x = x-40;
+        topSprite.x = x-30;
         topSprite.y = y+40;
+        bottomSprite.x = x-20;
+        bottomSprite.y = y+130;
         super.update(elapsed);
     }
     override public function loadData(data:Dynamic){
@@ -130,6 +126,7 @@ class Character extends Actor{
         //quiddity = stats[5];
         hatSprite.animation.frameIndex = randint(0,hatSprite.animation.frames-1);
         topSprite.animation.frameIndex = randint(0,1);
+        bottomSprite.animation.frameIndex = randint(0,bottomSprite.animation.frames-1);
         /*headSprite.animation.frameIndex = randint(0,headSprite.animation.frames-1);
         topSprite.animation.frameIndex = randint(0,topSprite.animation.frames-1);
         bottomSprite.animation.frameIndex = randint(0,bottomSprite.animation.frames-1);*/

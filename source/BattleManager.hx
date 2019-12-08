@@ -1,5 +1,7 @@
 package;
 
+import openfl.Assets;
+import flixel.system.FlxAssets.FlxSoundAsset;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxBasic;
 import flixel.FlxSprite;
@@ -17,8 +19,10 @@ class BattleManager extends FlxBasic{
     public var enemyTurnNotice:Label;
     public var notice:Label;
     public var buttonPool:FlxTypedGroup<Button>;
+    
     var currentActor:Int = 0;
     var isHeroTurn:Bool = true;
+    var speed:Float = 2;
     public function new() {
         super();
         characters = new Array<Character>();
@@ -42,7 +46,7 @@ class BattleManager extends FlxBasic{
     function showNotice(message:String) {
         notice.visible = true;
         notice.text.text = message;
-        FlxTween.tween(notice, {y:notice.y},0.5, {ease: FlxEase.circOut});
+        FlxTween.tween(notice, {y:notice.y},0.5*speed, {ease: FlxEase.circOut});
         notice.y = -1000;
     }
 
@@ -53,7 +57,7 @@ class BattleManager extends FlxBasic{
         else if(ability.targetMode == "allHeroes"){target = "All Heroes!";}
         else if(ability.targetMode == "self"){target = "Themself!";}
         notice.text.text = source.name + " used\n" + ability.name + "\non " + target;
-        FlxTween.tween(notice, {y:notice.y},0.5, {ease: FlxEase.circOut, onComplete: 
+        FlxTween.tween(notice, {y:notice.y},0.5*speed, {ease: FlxEase.circOut, onComplete: 
             function (tween:FlxTween){
                 notice.visible = false;
                 func();
@@ -69,7 +73,7 @@ class BattleManager extends FlxBasic{
     public function startHeroPhase() {
         heroTurnNotice.visible = true;
         isHeroTurn = true;
-        FlxTween.tween(heroTurnNotice, {y:heroTurnNotice.y},0.5, {ease: FlxEase.circOut, onComplete: heroPhase});
+        FlxTween.tween(heroTurnNotice, {y:heroTurnNotice.y},0.5*speed, {ease: FlxEase.circOut, onComplete: heroPhase});
         heroTurnNotice.y = -1000;
         
     }
@@ -77,7 +81,7 @@ class BattleManager extends FlxBasic{
     public function startEnemyPhase() {
         isHeroTurn = false;
         enemyTurnNotice.visible = true;
-        FlxTween.tween(enemyTurnNotice, {y:enemyTurnNotice.y},0.5, {ease: FlxEase.circOut, onComplete: enemyPhase});
+        FlxTween.tween(enemyTurnNotice, {y:enemyTurnNotice.y},0.5*speed, {ease: FlxEase.circOut, onComplete: enemyPhase});
         enemyTurnNotice.y = -1000;
         pointer.visible = false;
     }
@@ -171,6 +175,17 @@ class BattleManager extends FlxBasic{
             trace(message);
             showNotice(message);
             return;
+        }
+        if(ability.soundEffect != ""){
+            var sound = Assets.getSound(ability.soundEffect);
+            if(ability.soundEffect == "assets/sounds/Attack-Magic.wav"){
+                FlxG.sound.play(sound, 0.1);
+            }
+            else{
+                FlxG.sound.play(sound);
+            }
+            //var sound = new FlxSoundAsset();
+            //FlxG.sound.play(sound);
         }
         abilityNotice(ability, targets, character, nextTurn);
         currentActor++;
