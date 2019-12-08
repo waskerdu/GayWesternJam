@@ -32,10 +32,10 @@ class ApplicationMain
 
 		ManifestResources.init(config);
 
-		app.meta["build"] = "5";
+		app.meta["build"] = "6";
 		app.meta["company"] = "HaxeFlixel";
 		app.meta["file"] = "GayWesternJam";
-		app.meta["name"] = "GayWesternJam";
+		app.meta["name"] = "The Good, the Bad, and the Fabulous";
 		app.meta["packageName"] = "com.example.myapp";
 		app.meta["version"] = "0.0.1";
 
@@ -57,7 +57,7 @@ class ApplicationMain
 			minimized: false,
 			parameters: {},
 			resizable: false,
-			title: "GayWesternJam",
+			title: "The Good, the Bad, and the Fabulous",
 			width: 800,
 			x: null,
 			y: null,

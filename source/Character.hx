@@ -3,7 +3,6 @@ package;
 import flixel.FlxObject;
 import flixel.input.mouse.FlxMouseEventManager;
 import flixel.util.FlxColor;
-import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 
 class Character extends Actor{
@@ -15,7 +14,7 @@ class Character extends Actor{
     var identity:String;
     var gender:String;
     //public var statCallback:(Array<String> -> Void);
-    public var menuCallback:(Array<MenuOption> -> Void);
+    public var menuCallback:(Array<MenuOption> -> String -> String -> String -> Void);
     //public var abilityCallback:(ability:Ability, character:Character);
     //var name = "Name";
     public function new(gameData:GameData, x:Float = 0, y:Float = 0) {
@@ -155,11 +154,10 @@ class Character extends Actor{
 
     function ability(name:String) {
         return new MenuOption(
-            gameData.abilities[name].name, 
-            gameData.abilities[name].description,
-            useAbility,
-            name
-        );
+            //gameData.abilities[name].name + " Cost: " + gameData.abilities[name].cost, 
+            gameData.abilities[name].cost == 0? gameData.abilities[name].name :
+            gameData.abilities[name].name + " : QP " + gameData.abilities[name].cost,
+            gameData.abilities[name].description, useAbility, name);
     }
 
     public function setMenu(menu:String){
@@ -191,6 +189,6 @@ class Character extends Actor{
                 "main"
             ));
         }
-        menuCallback(menuEntries);
+        menuCallback(menuEntries, name, "Realness: "+Math.floor(stats["realness"]), "Quiddity: "+Math.floor(stats["quiddity"]));
     }
 }

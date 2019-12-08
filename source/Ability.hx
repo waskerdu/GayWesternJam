@@ -41,8 +41,12 @@ class Ability extends FlxBasic{
             trace(name+" fired!");
             var damage = source.stats[mainStat] * power;
             if(defendStat != "none"){damage *= target.stats[defendStat] / 10;}
-            if(damage < 1){damage = 1;}
+            if(damage < 1 && damage > 0){damage = 1;}
+            if(damage < 0 && damage > -1){damage = -1;}
+            trace("damage: "+damage);
+            trace("target stat before: "+target.stats[targetStat]);
             target.stats[targetStat] -= damage;
+            trace("target stat after: "+target.stats[targetStat]);
             if(target.stats[targetStat]<0){target.stats[targetStat] = 0;}
         }
         return null;

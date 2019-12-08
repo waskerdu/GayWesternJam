@@ -1,5 +1,6 @@
 package;
 
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxBasic;
 import flixel.FlxSprite;
 import flixel.tweens.FlxEase;
@@ -15,11 +16,21 @@ class BattleManager extends FlxBasic{
     public var heroTurnNotice:Label;
     public var enemyTurnNotice:Label;
     public var notice:Label;
+    public var buttonPool:FlxTypedGroup<Button>;
     var currentPlayer:Int = 0;
     public function new() {
         super();
         characters = new Array<Character>();
         enemies = new Array<Enemy>();
+    }
+
+    function getButton(){
+        var button = buttonPool.recycle();
+        if(button == null){
+            button = new Button();
+            buttonPool.add(button);
+        }
+        return button;
     }
 
     override function update(elapsed:Float) {
@@ -64,11 +75,11 @@ class BattleManager extends FlxBasic{
     }
 
     function heroTurn() {
-        characters[currentPlayer].setMenu("main");
         var character = characters[currentPlayer];
         pointer.x = character.x - pointer.width;
         pointer.y = character.y;
         character.stats["quiddity"]++;
+        characters[currentPlayer].setMenu("main");
     }
 
     function selectAlly() {
@@ -82,9 +93,7 @@ class BattleManager extends FlxBasic{
     public function abilityCallback(ability:Ability, character:Actor){
         var message:String = null;
         var targets = new Array<Actor>();
-        trace(ability.name);
         if(ability.targetMode == "allEnemies"){
-            trace("got here");
             for(enemy in enemies){targets.push(cast enemy);}
         }
         else if(ability.targetMode == "singleEnemy"){
@@ -108,30 +117,6 @@ class BattleManager extends FlxBasic{
             return;
         }
         message = ability.use(targets, character);
-        
-        /*if(ability.targetMode == "allEnemies"){
-            //message = ability.use(enemies, character);
-        }
-        else if(ability.targetMode == "allAllies"){
-            message = ability.use(characters, character);
-        }
-        else if(ability.targetMode == "self"){
-            message = ability.use(characters, character);
-        }
-        else if(ability.targetMode == "singleEnemy"){
-            var target = selectEnemy();
-            if(target == null){return;}
-            message = ability.use([selectEnemy], character);
-        }
-        else if(ability.targetMode == "singleAlly"){
-            var target = selectAlly();
-            if(target == null){return;}
-            message = ability.use([target], character);
-        }
-        else{
-            trace("target mode "+ability.targetMode+" is not valid");
-            return;
-        }*/
         if(message != null){
             trace(message);
             showNotice(message);

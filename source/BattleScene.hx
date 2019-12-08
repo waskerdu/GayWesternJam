@@ -1,6 +1,6 @@
 package;
 
-import js.html.LabelElement;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.util.FlxSave;
 import flixel.FlxState;
 import flixel.FlxSprite;
@@ -41,7 +41,9 @@ class BattleScene extends FlxState
 		battleManager.pointer = new FlxSprite();
 		battleManager.pointer.makeGraphic(10, 10, FlxColor.YELLOW);
 		battleManager.pointer.visible = false;
+		battleManager.buttonPool = new FlxTypedGroup<Button>();
 		add(battleManager.pointer);
+		add(battleManager.buttonPool);
 
 		for (i in 0...4){
 			var char = new Character(gameData);
@@ -56,6 +58,7 @@ class BattleScene extends FlxState
 		}
 		for (i in 0...2){
 			var enemy = new Enemy(gameData);
+			enemy.loadData(gameData.enemies["pig"]);
 			enemy.x = 0;
 			enemy.y = 100 + i * 60;
 			enemy.statCallback = statScreen.setContents;

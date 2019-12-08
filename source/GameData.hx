@@ -24,7 +24,7 @@ class GameData extends FlxBasic{
     public var elements:Array<String>;
     public var weaknesses:Array<String>;
     public var items:Array<String>;
-    public var enemies:Map<String,Enemy>;
+    public var enemies:Map<String,Dynamic>;
 
     public function new() {
         super();
@@ -50,7 +50,7 @@ class GameData extends FlxBasic{
         }
         tempArray = data.enemies;
         for (i in 0...tempArray.length){
-            enemies[tempArray[i].id] = new Enemy(tempArray[i]);
+            enemies[tempArray[i].id] = tempArray[i];
         }
     }
 }

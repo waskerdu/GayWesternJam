@@ -37,7 +37,8 @@
             "mainStat":"sass",
             "targetStat":"moxie",
             "defendStat":"none",
-            "duration":1
+            "duration":1,
+            "targetMode":"self"
         },
         {
             "id":"kickline",
@@ -48,7 +49,7 @@
             "targetStat":"moxie",
             "defendStat":"none",
             "duration":1,
-            "targetMode":"allAllies"
+            "targetMode":"allHeros"
         },
         {
             "id":"rainbowWave",
@@ -61,7 +62,7 @@
         },
         {
             "id":"ship",
-            "name":"Ship",
+            "name":"Ship It!",
             "description":"A hot hot romance dealing moderate spice damage.",
             "power":2,
             "cost":2,
@@ -75,11 +76,74 @@
             "cost":2,
             "augments":["sugar"],
             "targetMode":"allEnemies"
+        },
+        {
+            "id":"oink",
+            "name":"Oink!",
+            "description":"Basic physical attack",
+            "mainStat":"sass",
+            "targetMode":"allHeros"
+        },
+        {
+            "id":"womp",
+            "name":"Womp!",
+            "description":"Basic physical attack",
+            "mainStat":"sass",
+            "targetMode":"randomHero",
+            "power":2
+        },
+        {
+            "id":"evict",
+            "name":"EVICTION!!!",
+            "description":"Basic physical attack",
+            "targetStat":"quiddity",
+            "targetMode":"randomHero"
+        },
+        {
+            "id":"powerbill",
+            "name":"Power Bill",
+            "description":"Basic physical attack",
+            "targetMode":"allHeros"
         }
     ],
     "augments":[],
     "elements":[],
     "weaknesses":[],
     "items":[],
-    "enemies":[]
+    "enemies":[
+        {
+            "id":"pig",
+            "name":"Pig",
+            "description":"",
+            "sprite":"",
+            "stats":{
+                "sass":8,
+                "wit":1,
+                "moxie":6,
+                "flair":5,
+                "realness":500
+            },
+            "chains":[
+                ["oink"],
+                ["womp"]
+            ]
+        },
+        {
+            "id":"landlord",
+            "name":"Landlord",
+            "description":"",
+            "sprite":"",
+            "stats":{
+                "sass":2,
+                "wit":8,
+                "moxie":3,
+                "flair":5,
+                "realness":300
+            },
+            "chains":[
+                ["evict"],
+                ["powerbill"]
+            ]
+        }
+    ]
 }
