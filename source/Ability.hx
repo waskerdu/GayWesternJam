@@ -13,6 +13,7 @@ class Ability extends FlxBasic{
     public var duration:Float = 0;
     public var augments:Array<String>;
     public var attackAugments:Array<String>;
+    public var targetMode:String = "singleEnemy";
     public function new(data:Dynamic) {
         super();
         augments = new Array<String>();
@@ -27,5 +28,23 @@ class Ability extends FlxBasic{
         if(data.duration != null){duration = data.duration;}
         if(data.augments != null){augments = data.augments;}
         if(data.attackAugments != null){attackAugments = data.attackAugments;}
+        if(data.targetMode != null){targetMode = data.targetMode;}
+    }
+
+    public function use(targets:Array<Actor>, source:Actor):String {
+        //trace(name);
+        if(source.stats["quiddity"] < cost){
+            return "Not enough quiddity!";
+        }
+        source.stats["quiddity"]-=cost;
+        for (target in targets){
+            trace(name+" fired!");
+            var damage = source.stats[mainStat] * power;
+            if(defendStat != "none"){damage *= target.stats[defendStat] / 10;}
+            if(damage < 1){damage = 1;}
+            target.stats[targetStat] -= damage;
+            if(target.stats[targetStat]<0){target.stats[targetStat] = 0;}
+        }
+        return null;
     }
 }

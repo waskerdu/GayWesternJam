@@ -3,22 +3,23 @@ package;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.ui.FlxButton;
+import flixel.util.FlxColor;
 
 class CharacterMenu extends FlxGroup{
     static public var hPadding:Float = 5;
     static public var vPadding:Float = 5;
     public var x:Float;
     public var y:Float;
-    var buttons:Array<FlxButton>;
-    var buttonPool:FlxTypedGroup<FlxButton>;
+    var buttons:Array<Button>;
+    var buttonPool:FlxTypedGroup<Button>;
     public var sprite:FlxSprite;
 
     public function new(x:Float = 0, y:Float = 0) {
         super();
         this.x = x;
         this.y = y;
-        buttons = new Array<FlxButton>();
-        buttonPool = new FlxTypedGroup<FlxButton>();
+        buttons = new Array<Button>();
+        buttonPool = new FlxTypedGroup<Button>();
         sprite = new FlxSprite();
         add(sprite);
         add(buttonPool);
@@ -33,7 +34,7 @@ class CharacterMenu extends FlxGroup{
     function getButton(){
         var button = buttonPool.recycle();
         if(button == null){
-            button = new FlxButton();
+            button = new Button();
             buttonPool.add(button);
         }
         return button;
@@ -44,12 +45,14 @@ class CharacterMenu extends FlxGroup{
         buttons.resize(0);
         for(i in 0...contents.length){
             var button = getButton();
-            button.text = contents[i].name;
-            //button.onDown = contents[i].func;
-            button.Oncl
+            button.text.text = contents[i].name;
+            button.text.color = FlxColor.BLACK;
+            button.sprite.makeGraphic(100, 16, FlxColor.YELLOW);
+            button.callback = contents[i].func;
+            button.arg = contents[i].arg;
             buttons.push(button);
             button.x = x;
-            button.y = y + 16*i;
+            button.y = y + 20*i;
         }
     }
 }

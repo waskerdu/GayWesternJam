@@ -6,35 +6,29 @@ import flixel.util.FlxColor;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 
-class Character extends FlxGroup{
-    public var x:Float = 0;
-    public var y:Float = 0;
+class Character extends Actor{
     var hatSprite:FlxSprite;
     var headSprite:FlxSprite;
     var topSprite:FlxSprite;
     var bottomSprite:FlxSprite;
-    var sass:Float;
-    var wit:Float;
-    var moxie:Float;
-    var flair:Float;
-    var realness:Float;
-    var quiddity:Float = 0;
-    var weaknesses:Array<String>;
-    var tempWeaknesses:Array<{name:String, duration:Float}>;
-    var buffs:Array<{name:String, duration:Float, mod:Float}>;
-    var spells:Array<String>;
-    var gameData:GameData;
     var job:String;
     var identity:String;
     var gender:String;
-    public var statCallback:(Array<String> -> Void);
+    //public var statCallback:(Array<String> -> Void);
     public var menuCallback:(Array<MenuOption> -> Void);
-    var name = "Name";
+    //public var abilityCallback:(ability:Ability, character:Character);
+    //var name = "Name";
     public function new(gameData:GameData, x:Float = 0, y:Float = 0) {
-        super();
+        super(gameData, x, y);
         this.x = x;
         this.y = y;
         this.gameData = gameData;
+        stats = new Map<String,Float>();
+        stats["sass"] = 0.5;
+        stats["wit"] = 0.5;
+        stats["moxie"] = 0.5;
+        stats["realness"] = 50;
+        stats["quiddity"] = 0;
         spells = new Array<String>();
         weaknesses = new Array<String>();
         tempWeaknesses = new Array<{name:String, duration:Float}>();
@@ -59,8 +53,8 @@ class Character extends FlxGroup{
         hatSprite.y = y;
         super.update(elapsed);
     }
-    public function loadData(data:Dynamic){
-        sass = data.sass;
+    override public function loadData(data:Dynamic){
+        /*sass = data.sass;
         wit = data.wit;
         moxie = data.moxie;
         flair = data.flair;
@@ -73,11 +67,11 @@ class Character extends FlxGroup{
         gender = data.gender;
         identity = data.identity;
         job = data.job;
-        name = data.name;
+        name = data.name;*/
     }
-    public function saveData(){
+    override public function saveData(){
         var data:Dynamic = {
-            sass : this.sass,
+            /*sass : this.sass,
             wit : this.wit,
             moxie : this.moxie,
             flair : this.flair,
@@ -90,16 +84,12 @@ class Character extends FlxGroup{
             gender : this.gender,
             identity: this.identity,
             job : this.job,
-            name : this.name,
+            name : this.name,*/
         }
         return data;
     }
-    function randint(min:Int, max:Int){
-        var num = Math.random() * (max - min);
-        return Math.round(num) + min;
-    }
     public function randomize(){
-        var stats = new Array<Float>();
+        var statArray = new Array<Float>();
         var tempStats = new Array<Float>();
         var num:Float;
         var goodStats = 2;
@@ -123,13 +113,13 @@ class Character extends FlxGroup{
             var stat = tempStats[randInd];
             tempStats[randInd] = -1;
             tempStats.remove(-1);
-            stats.push(stat);
+            statArray.push(stat);
         }
-        sass = stats[0];
-        wit = stats[1];
-        moxie = stats[2];
+        stats["sass"] = statArray[0] * 10;
+        stats["wit"] = statArray[1] * 10;
+        stats["moxie"] = statArray[2] * 10;
         //flair = stats[3];
-        realness = stats[3];
+        stats["realness"] = statArray[3]*100;
         //quiddity = stats[5];
         hatSprite.animation.frameIndex = randint(0,hatSprite.animation.frames-1);
         /*headSprite.animation.frameIndex = randint(0,headSprite.animation.frames-1);
@@ -144,23 +134,23 @@ class Character extends FlxGroup{
         var firstNames = ["marla","winnefred","albert","ester","fenric","vanessa","edith"];
         name = firstNames[randint(0,firstNames.length-1)];
     }
-    function mouseOver(object:FlxObject) {
+    override function mouseOver(object:FlxObject) {
         // set stat screen
-        var stats = new Array<String>();
-        stats.push(name);
-        stats.push("");
-        stats.push("Sass: "+Math.floor(sass*10));
-        stats.push("used for physical attacks");
-        stats.push("Wit: "+Math.floor(wit*10));
-        stats.push("used for magic attacks");
-        stats.push("Moxie: "+Math.floor(moxie*10));
-        stats.push("used to defend against all attacks");
+        var statArray = new Array<String>();
+        statArray.push(name);
+        statArray.push("");
+        statArray.push("Sass: "+Math.floor(stats["sass"]));
+        statArray.push("used for physical attacks");
+        statArray.push("Wit: "+Math.floor(stats["wit"]));
+        statArray.push("used for magic attacks");
+        statArray.push("Moxie: "+Math.floor(stats["moxie"]));
+        statArray.push("used to defend against \nall attacks");
         //stats.push("Flair: "+Math.floor(flair*10));
-        stats.push("Realness: "+Math.floor(realness*100));
-        stats.push("how much physical damage a character\n can take before being KO’d");
-        stats.push("Quiddity: "+Math.floor(quiddity));
-        stats.push("resource used for spells");
-        statCallback(stats);
+        statArray.push("Realness: "+Math.floor(stats["realness"]));
+        statArray.push("how much physical damage a\ncharacter can take\nbefore being KO’d");
+        statArray.push("Quiddity: "+Math.floor(stats["quiddity"]));
+        statArray.push("resource used for spells");
+        statCallback(statArray);
     }
 
     function ability(name:String) {
@@ -203,6 +193,4 @@ class Character extends FlxGroup{
         }
         menuCallback(menuEntries);
     }
-    function useAbility(menu:String){}
-    function useItem(menu:String){}
 }

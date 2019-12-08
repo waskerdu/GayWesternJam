@@ -1,5 +1,6 @@
 package;
 
+import js.html.LabelElement;
 import flixel.util.FlxSave;
 import flixel.FlxState;
 import flixel.FlxSprite;
@@ -9,10 +10,10 @@ class BattleScene extends FlxState
 {
 	var gameData:GameData;
 	var gameSave:FlxSave;
-	var characters:Array<Character>;
 	var speedTrack:FlxSprite;
 	var statScreen:StatScreen;
 	var characterMenu:CharacterMenu;
+	var battleManager:BattleManager;
 	
 	override public function create():Void
 	{
@@ -29,13 +30,19 @@ class BattleScene extends FlxState
 		characterMenu.x = 800-320;
 		characterMenu.y = 600-160;
 		add(characterMenu);
-		/*speedTrack = new FlxSprite();
-		speedTrack.makeGraphic(600,20, FlxColor.WHITE);
-		speedTrack.x = 100;
-		speedTrack.y = 20;
-		add(speedTrack);*/
+		battleManager = new BattleManager();
+		add(battleManager);
+		battleManager.victory = addLabel("Victory!",FlxColor.GREEN);
+		battleManager.defeat = addLabel("Defeat!",FlxColor.RED);
+		battleManager.heroTurnNotice = addLabel("Hero Turn",FlxColor.YELLOW);
+		battleManager.enemyTurnNotice = addLabel("Enemy Turn",FlxColor.YELLOW);
+		battleManager.notice = addLabel("",FlxColor.YELLOW);
+		battleManager.notice.text.size = 40;
+		battleManager.pointer = new FlxSprite();
+		battleManager.pointer.makeGraphic(10, 10, FlxColor.YELLOW);
+		battleManager.pointer.visible = false;
+		add(battleManager.pointer);
 
-		characters = new Array<Character>();
 		for (i in 0...4){
 			var char = new Character(gameData);
 			char.x = 800-60;
@@ -43,10 +50,34 @@ class BattleScene extends FlxState
 			char.randomize();
 			char.statCallback = statScreen.setContents;
 			char.menuCallback = characterMenu.setContents;
+			char.abilityCallback = battleManager.abilityCallback;
 			add(char);
-			characters.push(char);
+			battleManager.characters.push(char);
 		}
-		characters[0].setMenu("main");
+		for (i in 0...2){
+			var enemy = new Enemy(gameData);
+			enemy.x = 0;
+			enemy.y = 100 + i * 60;
+			enemy.statCallback = statScreen.setContents;
+			enemy.abilityCallback = battleManager.abilityCallback;
+			add(enemy);
+			battleManager.enemies.push(enemy);
+		}
+		//battleManager.characters[0].setMenu("main");
+		battleManager.startHeroPhase();
+	}
+
+	function addLabel(text:String, color:FlxColor){
+		var label = new Label();
+		label.text.text = text;
+		label.text.size = 72;
+		label.text.color = FlxColor.BLACK;
+		label.sprite.makeGraphic(500, 300, color);
+		label.x = 150;
+		label.y = 100;
+		label.visible = false;
+		add(label);
+		return label;
 	}
 
 	override public function update(elapsed:Float):Void
