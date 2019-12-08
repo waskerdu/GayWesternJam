@@ -45,7 +45,7 @@ class BattleScene extends FlxState
 		add(battleManager.pointer);
 		add(battleManager.buttonPool);
 
-		for (i in 0...4){
+		for (i in 0...1){
 			var char = new Character(gameData);
 			char.x = 800-60;
 			char.y = 100 + i * 60;
@@ -56,7 +56,7 @@ class BattleScene extends FlxState
 			add(char);
 			battleManager.characters.push(char);
 		}
-		for (i in 0...2){
+		for (i in 0...1){
 			var enemy = new Enemy(gameData);
 			enemy.loadData(gameData.enemies["pig"]);
 			enemy.x = 0;

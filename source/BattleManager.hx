@@ -17,7 +17,8 @@ class BattleManager extends FlxBasic{
     public var enemyTurnNotice:Label;
     public var notice:Label;
     public var buttonPool:FlxTypedGroup<Button>;
-    var currentPlayer:Int = 0;
+    var currentActor:Int = 0;
+    var isHeroTurn:Bool = true;
     public function new() {
         super();
         characters = new Array<Character>();
@@ -45,22 +46,63 @@ class BattleManager extends FlxBasic{
         notice.y = -1000;
     }
 
+    function abilityNotice(ability:Ability, targets:Array<Actor>, source:Actor, func:(Void -> Void)) {
+        notice.visible = true;
+        var target:String = targets[0].name;
+        if(ability.targetMode == "allEnemies"){target = "All Enemies!";}
+        else if(ability.targetMode == "allHeroes"){target = "All Heroes!";}
+        else if(ability.targetMode == "self"){target = "Themself!";}
+        notice.text.text = source.name + " used\n" + ability.name + "\non " + target;
+        FlxTween.tween(notice, {y:notice.y},0.5, {ease: FlxEase.circOut, onComplete: 
+            function (tween:FlxTween){
+                notice.visible = false;
+                func();
+            }
+        });
+        notice.y = -1000;
+    }
+
     public function animateNotice() {
         
     }
 
     public function startHeroPhase() {
         heroTurnNotice.visible = true;
+        isHeroTurn = true;
         FlxTween.tween(heroTurnNotice, {y:heroTurnNotice.y},0.5, {ease: FlxEase.circOut, onComplete: heroPhase});
         heroTurnNotice.y = -1000;
         
     }
 
     public function startEnemyPhase() {
+        isHeroTurn = false;
         enemyTurnNotice.visible = true;
         FlxTween.tween(enemyTurnNotice, {y:enemyTurnNotice.y},0.5, {ease: FlxEase.circOut, onComplete: enemyPhase});
         enemyTurnNotice.y = -1000;
         pointer.visible = false;
+    }
+
+    function nextTurn(){
+        if(isHeroTurn){
+            if(currentActor == characters.length){
+                currentActor = 0;
+                startEnemyPhase();
+            }
+            else{
+                heroTurn();
+                //currentActor++;
+            }
+        }
+        else{
+            if(currentActor == enemies.length){
+                currentActor = 0;
+                startHeroPhase();
+            }
+            else{
+                enemyTurn();
+                //currentActor++;
+            }
+        }
     }
 
     function heroPhase(tween:FlxTween) {
@@ -71,15 +113,19 @@ class BattleManager extends FlxBasic{
 
     function enemyPhase(tween:FlxTween) {
         enemyTurnNotice.visible = false;
-        startHeroPhase();
+        enemyTurn();
     }
 
     function heroTurn() {
-        var character = characters[currentPlayer];
+        var character = characters[currentActor];
         pointer.x = character.x - pointer.width;
         pointer.y = character.y;
         character.stats["quiddity"]++;
-        characters[currentPlayer].setMenu("main");
+        characters[currentActor].setMenu("main");
+    }
+
+    function enemyTurn() {
+        enemies[currentActor].act();
     }
 
     function selectAlly() {
@@ -101,13 +147,17 @@ class BattleManager extends FlxBasic{
             if(target == null){return;}
             targets.push(cast target);
         }
-        else if(ability.targetMode == "allAllies"){
+        else if(ability.targetMode == "allHeroes"){
             for(char in characters){targets.push(cast char);}
         }
-        else if(ability.targetMode == "singleAlly"){
+        else if(ability.targetMode == "singleHero"){
             var target = selectAlly();
             if(target == null){return;}
             targets.push(cast target);
+        }
+        else if(ability.targetMode == "randomHero"){
+            var target = characters[Actor.randint(0, characters.length-1)];
+            targets.push(target);
         }
         else if(ability.targetMode == "self"){
             targets.push(character);
@@ -122,8 +172,10 @@ class BattleManager extends FlxBasic{
             showNotice(message);
             return;
         }
-        currentPlayer++;
+        abilityNotice(ability, targets, character, nextTurn);
+        currentActor++;
+        /*currentPlayer++;
         if(currentPlayer == characters.length){currentPlayer = 0; startEnemyPhase();}
-        heroTurn();
+        heroTurn();*/
 	}
 }

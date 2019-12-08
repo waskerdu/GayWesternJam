@@ -49,7 +49,7 @@
             "targetStat":"moxie",
             "defendStat":"none",
             "duration":1,
-            "targetMode":"allHeros"
+            "targetMode":"allHeroes"
         },
         {
             "id":"rainbowWave",
@@ -82,7 +82,7 @@
             "name":"Oink!",
             "description":"Basic physical attack",
             "mainStat":"sass",
-            "targetMode":"allHeros"
+            "targetMode":"allHeroes"
         },
         {
             "id":"womp",
@@ -103,7 +103,7 @@
             "id":"powerbill",
             "name":"Power Bill",
             "description":"Basic physical attack",
-            "targetMode":"allHeros"
+            "targetMode":"allHeroes"
         }
     ],
     "augments":[],
@@ -116,13 +116,13 @@
             "name":"Pig",
             "description":"",
             "sprite":"",
-            "stats":{
-                "sass":8,
-                "wit":1,
-                "moxie":6,
-                "flair":5,
-                "realness":500
-            },
+            "stats":[
+                "sass",8,
+                "wit",1,
+                "moxie",6,
+                "flair",5,
+                "realness",500
+            ],
             "chains":[
                 ["oink"],
                 ["womp"]
@@ -133,13 +133,13 @@
             "name":"Landlord",
             "description":"",
             "sprite":"",
-            "stats":{
-                "sass":2,
-                "wit":8,
-                "moxie":3,
-                "flair":5,
-                "realness":300
-            },
+            "stats":[
+                "sass",2,
+                "wit",8,
+                "moxie",3,
+                "flair",5,
+                "realness",300
+            ],
             "chains":[
                 ["evict"],
                 ["powerbill"]

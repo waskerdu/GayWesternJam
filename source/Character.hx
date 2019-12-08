@@ -87,6 +87,7 @@ class Character extends Actor{
         }
         return data;
     }
+
     public function randomize(){
         var statArray = new Array<Float>();
         var tempStats = new Array<Float>();
@@ -108,7 +109,7 @@ class Character extends Actor{
         }
         // shuffle stats
         for(i in 0...numStats){
-            var randInd = randint(0, tempStats.length-1);
+            var randInd = Actor.randint(0, tempStats.length-1);
             var stat = tempStats[randInd];
             tempStats[randInd] = -1;
             tempStats.remove(-1);
@@ -132,6 +133,9 @@ class Character extends Actor{
         spells = spells.concat(gameData.classes[job].abilities);
         var firstNames = ["marla","winnefred","albert","ester","fenric","vanessa","edith"];
         name = firstNames[randint(0,firstNames.length-1)];
+    }
+    function randint(min:Int, max:Int) {
+        return Actor.randint(min,max);
     }
     override function mouseOver(object:FlxObject) {
         // set stat screen

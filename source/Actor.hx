@@ -24,7 +24,7 @@ class Actor extends FlxGroup{
     public var sprite:FlxSprite;
     public var statCallback:(Array<String> -> Void);
     public var abilityCallback:(Ability -> Actor -> Void);
-    var name = "Name";
+    public var name = "Name";
     public function new(gameData:GameData, x:Float = 0, y:Float = 0) {
         super();
         this.x = x;
@@ -49,6 +49,19 @@ class Actor extends FlxGroup{
         sprite.x = x;
         sprite.y = y;
         super.update(elapsed);
+    }
+    function shuffleInt(start:Array<Int>){
+        var temp = new Array<Int>();
+        var end = new Array<Int>();
+        for (i in start){temp.push(i);}
+        for (i in 0...start.length){
+            var randInd = randint(0, temp.length-1);
+            var val = temp[randInd];
+            temp[randInd] = -1;
+            temp.remove(-1);
+            end.push(val);
+        }
+        return end;
     }
     public function loadData(data:Dynamic){
         /*sass = data.sass;
@@ -80,7 +93,7 @@ class Actor extends FlxGroup{
         }
         return data;
     }
-    function randint(min:Int, max:Int){
+    public static function randint(min:Int, max:Int){
         var num = Math.random() * (max - min);
         return Math.round(num) + min;
     }
