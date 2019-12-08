@@ -32,9 +32,14 @@ class Character extends Actor{
         weaknesses = new Array<String>();
         tempWeaknesses = new Array<{name:String, duration:Float}>();
         buffs = new Array<{name:String, duration:Float, mod:Float}>();
+        sprite.visible = false;
         hatSprite = new FlxSprite();
         add(hatSprite);
-        hatSprite.makeGraphic(50,50,FlxColor.GREEN);
+        hatSprite.loadGraphic("assets/images/Heads.png", true, 100, 100);
+        topSprite = new FlxSprite();
+        add(topSprite);
+        topSprite.loadGraphic("assets/images/PowerTops.png", true, 180, 150);
+        //hatSprite.makeGraphic(50,50,FlxColor.GREEN);
         /*hatSprite.loadGraphic("assets/Hats.png", true, 64,64);
         headSprite = new FlxSprite();
         add(headSprite);
@@ -50,6 +55,8 @@ class Character extends Actor{
     override public function update(elapsed:Float) {
         hatSprite.x = x;
         hatSprite.y = y;
+        topSprite.x = x-40;
+        topSprite.y = y+40;
         super.update(elapsed);
     }
     override public function loadData(data:Dynamic){
@@ -122,6 +129,7 @@ class Character extends Actor{
         stats["realness"] = statArray[3]*100;
         //quiddity = stats[5];
         hatSprite.animation.frameIndex = randint(0,hatSprite.animation.frames-1);
+        topSprite.animation.frameIndex = randint(0,1);
         /*headSprite.animation.frameIndex = randint(0,headSprite.animation.frames-1);
         topSprite.animation.frameIndex = randint(0,topSprite.animation.frames-1);
         bottomSprite.animation.frameIndex = randint(0,bottomSprite.animation.frames-1);*/
