@@ -44,6 +44,7 @@ class BattleScene extends FlxState
 		battleManager.pointer.makeGraphic(10, 10, FlxColor.YELLOW);
 		battleManager.pointer.visible = false;
 		battleManager.buttonPool = new FlxTypedGroup<Button>();
+		battleManager.characterMenu = characterMenu;
 
 		for (i in 0...4){
 			var char = new Character(gameData);

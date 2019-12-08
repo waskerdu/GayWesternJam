@@ -1,7 +1,6 @@
 package;
 
 import openfl.Assets;
-import flixel.system.FlxAssets.FlxSoundAsset;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxBasic;
 import flixel.FlxSprite;
@@ -19,7 +18,9 @@ class BattleManager extends FlxBasic{
     public var enemyTurnNotice:Label;
     public var notice:Label;
     public var buttonPool:FlxTypedGroup<Button>;
-    
+    public var characterMenu:CharacterMenu;
+    public var nextSound:String = "";
+
     var currentActor:Int = 0;
     var isHeroTurn:Bool = true;
     var speed:Float = 2;
@@ -87,6 +88,10 @@ class BattleManager extends FlxBasic{
     }
 
     function nextTurn(){
+        if(nextSound != ""){
+            var sound = Assets.getSound(nextSound);
+            FlxG.sound.play(sound);
+        }
         if(isHeroTurn){
             if(currentActor == characters.length){
                 currentActor = 0;
@@ -176,18 +181,9 @@ class BattleManager extends FlxBasic{
             showNotice(message);
             return;
         }
-        if(ability.soundEffect != ""){
-            var sound = Assets.getSound(ability.soundEffect);
-            if(ability.soundEffect == "assets/sounds/Attack-Magic.wav"){
-                FlxG.sound.play(sound, 0.1);
-            }
-            else{
-                FlxG.sound.play(sound);
-            }
-            //var sound = new FlxSoundAsset();
-            //FlxG.sound.play(sound);
-        }
+        characterMenu.clearContents();
         abilityNotice(ability, targets, character, nextTurn);
+        nextSound = ability.soundEffect;
         currentActor++;
         /*currentPlayer++;
         if(currentPlayer == characters.length){currentPlayer = 0; startEnemyPhase();}

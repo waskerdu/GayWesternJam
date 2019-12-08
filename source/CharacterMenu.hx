@@ -62,9 +62,13 @@ class CharacterMenu extends FlxGroup{
         return button;
     }
 
-    public function setContents(contents:Array<MenuOption>,name:String, realness:String, quiddity:String) {
+    public function clearContents() {
         buttonPool.forEach(function(button){button.kill();});
         buttons.resize(0);
+    }
+
+    public function setContents(contents:Array<MenuOption>,name:String, realness:String, quiddity:String) {
+        clearContents();
         nameString.text = name;
         realString.text = realness;
         quidString.text = quiddity;
