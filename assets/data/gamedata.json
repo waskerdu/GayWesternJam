@@ -81,7 +81,7 @@
             "cost":2,
             "augments":["sugar"],
             "targetMode":"allEnemies",
-            "soundEffect":"assets/sounds/Player-PurpleProse.wav"
+            "soundEffect":"assets/sounds/Player-PupleProse.wav"
         },
         {
             "id":"oink",

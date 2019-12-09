@@ -71,7 +71,7 @@ import sys.FileSystem;
 
 		#else
 
-		data = '{"name":null,"assets":"aoy4:pathy26:assets%2Fimages%2FPopo.pngy4:sizei48620y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y34:assets%2Fimages%2FPowerBottoms.pngR2i100171R3R4R5R7R6tgoR0y31:assets%2Fimages%2FPowerTops.pngR2i145701R3R4R5R8R6tgoR0y37:assets%2Fimages%2FPowerBottoms.png%7ER2i921422R3y6:BINARYR5R9R6tgoR0y27:assets%2Fimages%2FHeads.pngR2i17130R3R4R5R11R6tgoR0y34:assets%2Fimages%2FPowerTops.png%7ER2i2611187R3R10R5R12R6tgoR0y40:assets%2Fimages%2FPower%20Bottoms.png%7ER2i921422R3R10R5R13R6tgoR2i145648R3y5:SOUNDR5y37:assets%2Fsounds%2FAttack-Physical.wavy9:pathGroupaR15hR6tgoR2i74190R3R14R5y33:assets%2Fsounds%2FMenu-Select.wavR16aR17hR6tgoR2i107244R3R14R5y32:assets%2Fsounds%2FEnemy-Oink.wavR16aR18hR6tgoR2i224438R3R14R5y34:assets%2Fsounds%2FAttack-Magic.wavR16aR19hR6tgoR2i67248R3R14R5y31:assets%2Fsounds%2FMenu-Back.wavR16aR20hR6tgoR2i94982R3R14R5y33:assets%2Fsounds%2FMenu-Accept.wavR16aR21hR6tgoR2i98458R3R14R5y32:assets%2Fsounds%2FEnemy-Womp.wavR16aR22hR6tgoR2i42168R3R14R5y31:assets%2Fsounds%2FMenu-Deny.wavR16aR23hR6tgoR0y29:assets%2Fdata%2Fgamedata.jsonR2i4478R3y4:TEXTR5R24R6tgoR2i75568R3y4:FONTy9:classNamey34:__ASSET__assets_fonts_pacifico_ttfR5y29:assets%2Ffonts%2FPacifico.ttfR6tgoR2i28234R3R14R5y40:assets%2Fmusic%2FChooChoo-Track03Win.oggR16aR30hR6tgoR2i499059R3R14R5y42:assets%2Fmusic%2FChooChoo-Track02Batle.oggR16aR31hR6tgoR2i41875R3R14R5y41:assets%2Fmusic%2FChooChoo-Track04Lose.oggR16aR32hR6tgoR2i397152R3R14R5y48:assets%2Fmusic%2FChooChoo-Track01TitleScreen.oggR16aR33hR6tgoR2i2114R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R16aR35y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R34R5y28:flixel%2Fsounds%2Fflixel.mp3R16aR37y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i33629R3R14R5R38R16aR37R38hgoR2i5794R3R14R5R36R16aR35R36hgoR2i15744R3R26R27y35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R26R27y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R4R5R43R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R4R5R44R6tgh","rootPath":null,"version":2,"libraryArgs":[],"libraryType":null}';
+		data = '{"name":null,"assets":"aoy4:pathy26:assets%2Fimages%2FPopo.pngy4:sizei48620y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y34:assets%2Fimages%2FPowerBottoms.pngR2i100171R3R4R5R7R6tgoR0y31:assets%2Fimages%2FPowerTops.pngR2i145701R3R4R5R8R6tgoR0y37:assets%2Fimages%2FPowerBottoms.png%7ER2i921422R3y6:BINARYR5R9R6tgoR0y27:assets%2Fimages%2FHeads.pngR2i17130R3R4R5R11R6tgoR0y34:assets%2Fimages%2FPowerTops.png%7ER2i2611187R3R10R5R12R6tgoR0y40:assets%2Fimages%2FPower%20Bottoms.png%7ER2i921422R3R10R5R13R6tgoR2i113212R3y5:SOUNDR5y35:assets%2Fsounds%2FPlayer-Defend.wavy9:pathGroupaR15hR6tgoR2i673324R3R14R5y33:assets%2Fsounds%2FPlayer-Ship.wavR16aR17hR6tgoR2i74190R3R14R5y33:assets%2Fsounds%2FMenu-Select.wavR16aR18hR6tgoR2i814918R3R14R5y39:assets%2Fsounds%2FPlayer-PupleProse.wavR16aR19hR6tgoR2i145648R3R14R5y35:assets%2Fsounds%2FPlayer-Attack.wavR16aR20hR6tgoR2i67248R3R14R5y31:assets%2Fsounds%2FMenu-Back.wavR16aR21hR6tgoR2i98458R3R14R5y30:assets%2Fsounds%2FPig-Womp.wavR16aR22hR6tgoR2i107244R3R14R5y30:assets%2Fsounds%2FPig-Oink.wavR16aR23hR6tgoR2i112922R3R14R5y36:assets%2Fsounds%2FLandlord-Evict.wavR16aR24hR6tgoR2i94982R3R14R5y33:assets%2Fsounds%2FMenu-Accept.wavR16aR25hR6tgoR2i938518R3R14R5y37:assets%2Fsounds%2FPlayer-Kickline.wavR16aR26hR6tgoR2i138244R3R14R5y40:assets%2Fsounds%2FLandlord-Powerbill.wavR16aR27hR6tgoR2i979294R3R14R5y36:assets%2Fsounds%2FPlayer-Rainbow.wavR16aR28hR6tgoR2i42168R3R14R5y31:assets%2Fsounds%2FMenu-Deny.wavR16aR29hR6tgoR0y29:assets%2Fdata%2Fgamedata.jsonR2i4672R3y4:TEXTR5R30R6tgoR2i75568R3y4:FONTy9:classNamey34:__ASSET__assets_fonts_pacifico_ttfR5y29:assets%2Ffonts%2FPacifico.ttfR6tgoR2i28234R3R14R5y40:assets%2Fmusic%2FChooChoo-Track03Win.oggR16aR36hR6tgoR2i499059R3R14R5y42:assets%2Fmusic%2FChooChoo-Track02Batle.oggR16aR37hR6tgoR2i41875R3R14R5y41:assets%2Fmusic%2FChooChoo-Track04Lose.oggR16aR38hR6tgoR2i397152R3R14R5y48:assets%2Fmusic%2FChooChoo-Track01TitleScreen.oggR16aR39hR6tgoR2i2114R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R16aR41y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R40R5y28:flixel%2Fsounds%2Fflixel.mp3R16aR43y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i33629R3R14R5R44R16aR43R44hgoR2i5794R3R14R5R42R16aR41R42hgoR2i15744R3R32R33y35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R32R33y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R4R5R49R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R4R5R50R6tgh","rootPath":null,"version":2,"libraryArgs":[],"libraryType":null}';
 		manifest = AssetManifest.parse (data, rootPath);
 		library = AssetLibrary.fromManifest (manifest);
 		Assets.registerLibrary ("default", library);
@@ -106,13 +106,19 @@ null
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_heads_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_powertops_png_ extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_power_bottoms_png_ extends null { }
-@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_attack_physical_wav extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_player_defend_wav extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_player_ship_wav extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_menu_select_wav extends null { }
-@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_enemy_oink_wav extends null { }
-@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_attack_magic_wav extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_player_pupleprose_wav extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_player_attack_wav extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_menu_back_wav extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_pig_womp_wav extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_pig_oink_wav extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_landlord_evict_wav extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_menu_accept_wav extends null { }
-@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_enemy_womp_wav extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_player_kickline_wav extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_landlord_powerbill_wav extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_player_rainbow_wav extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_menu_deny_wav extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_data_gamedata_json extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_fonts_pacifico_ttf extends null { }
@@ -140,13 +146,19 @@ null
 @:keep @:image("assets/images/Heads.png") @:noCompletion #if display private #end class __ASSET__assets_images_heads_png extends lime.graphics.Image {}
 @:keep @:file("assets/images/PowerTops.png~") @:noCompletion #if display private #end class __ASSET__assets_images_powertops_png_ extends haxe.io.Bytes {}
 @:keep @:file("assets/images/Power Bottoms.png~") @:noCompletion #if display private #end class __ASSET__assets_images_power_bottoms_png_ extends haxe.io.Bytes {}
-@:keep @:file("assets/sounds/Attack-Physical.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_attack_physical_wav extends haxe.io.Bytes {}
+@:keep @:file("assets/sounds/Player-Defend.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_player_defend_wav extends haxe.io.Bytes {}
+@:keep @:file("assets/sounds/Player-Ship.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_player_ship_wav extends haxe.io.Bytes {}
 @:keep @:file("assets/sounds/Menu-Select.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_menu_select_wav extends haxe.io.Bytes {}
-@:keep @:file("assets/sounds/Enemy-Oink.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_enemy_oink_wav extends haxe.io.Bytes {}
-@:keep @:file("assets/sounds/Attack-Magic.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_attack_magic_wav extends haxe.io.Bytes {}
+@:keep @:file("assets/sounds/Player-PupleProse.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_player_pupleprose_wav extends haxe.io.Bytes {}
+@:keep @:file("assets/sounds/Player-Attack.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_player_attack_wav extends haxe.io.Bytes {}
 @:keep @:file("assets/sounds/Menu-Back.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_menu_back_wav extends haxe.io.Bytes {}
+@:keep @:file("assets/sounds/Pig-Womp.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_pig_womp_wav extends haxe.io.Bytes {}
+@:keep @:file("assets/sounds/Pig-Oink.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_pig_oink_wav extends haxe.io.Bytes {}
+@:keep @:file("assets/sounds/Landlord-Evict.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_landlord_evict_wav extends haxe.io.Bytes {}
 @:keep @:file("assets/sounds/Menu-Accept.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_menu_accept_wav extends haxe.io.Bytes {}
-@:keep @:file("assets/sounds/Enemy-Womp.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_enemy_womp_wav extends haxe.io.Bytes {}
+@:keep @:file("assets/sounds/Player-Kickline.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_player_kickline_wav extends haxe.io.Bytes {}
+@:keep @:file("assets/sounds/Landlord-Powerbill.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_landlord_powerbill_wav extends haxe.io.Bytes {}
+@:keep @:file("assets/sounds/Player-Rainbow.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_player_rainbow_wav extends haxe.io.Bytes {}
 @:keep @:file("assets/sounds/Menu-Deny.wav") @:noCompletion #if display private #end class __ASSET__assets_sounds_menu_deny_wav extends haxe.io.Bytes {}
 @:keep @:file("assets/data/gamedata.json") @:noCompletion #if display private #end class __ASSET__assets_data_gamedata_json extends haxe.io.Bytes {}
 @:keep @:font("export/html5/obj/webfont/Pacifico.ttf") @:noCompletion #if display private #end class __ASSET__assets_fonts_pacifico_ttf extends lime.text.Font {}

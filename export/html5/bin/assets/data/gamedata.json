@@ -28,7 +28,7 @@
             "name":"Attack!",
             "description":"Basic physical attack",
             "mainStat":"sass",
-            "soundEffect":"assets/sounds/Attack-Physical.wav"
+            "soundEffect":"assets/sounds/Player-Attack.wav"
         },
         {
             "id":"defend",
@@ -39,7 +39,8 @@
             "targetStat":"moxie",
             "defendStat":"none",
             "duration":1,
-            "targetMode":"self"
+            "targetMode":"self",
+            "soundEffect":"assets/sounds/Player-Defend.wav"
         },
         {
             "id":"kickline",
@@ -51,7 +52,7 @@
             "defendStat":"none",
             "duration":1,
             "targetMode":"allHeroes",
-            "soundEffect":"assets/sounds/Attack-Magic.wav"
+            "soundEffect":"assets/sounds/Player-Kickline.wav"
         },
         {
             "id":"rainbowWave",
@@ -61,7 +62,7 @@
             "duration":0,
             "targetMode":"allEnemies",
             "augments":["sugar","spice","glitter","milkshake"],
-            "soundEffect":"assets/sounds/Attack-Magic.wav"
+            "soundEffect":"assets/sounds/Player-Rainbow.wav"
         },
         {
             "id":"ship",
@@ -70,7 +71,7 @@
             "power":2,
             "cost":2,
             "augments":["spice"],
-            "soundEffect":"assets/sounds/Attack-Magic.wav"
+            "soundEffect":"assets/sounds/Player-Ship.wav"
         },
         {
             "id":"purpleProse",
@@ -80,7 +81,7 @@
             "cost":2,
             "augments":["sugar"],
             "targetMode":"allEnemies",
-            "soundEffect":"assets/sounds/Attack-Magic.wav"
+            "soundEffect":"assets/sounds/Player-PupleProse.wav"
         },
         {
             "id":"oink",
@@ -88,7 +89,7 @@
             "description":"Basic physical attack",
             "mainStat":"sass",
             "targetMode":"allHeroes",
-            "soundEffect":"assets/sounds/Enemy-Oink.wav"
+            "soundEffect":"assets/sounds/Pig-Oink.wav"
         },
         {
             "id":"womp",
@@ -97,20 +98,22 @@
             "mainStat":"sass",
             "targetMode":"randomHero",
             "power":2,
-            "soundEffect":"assets/sounds/Enemy-Womp.wav"
+            "soundEffect":"assets/sounds/Pig-Womp.wav"
         },
         {
             "id":"evict",
             "name":"EVICTION!!!",
             "description":"Basic physical attack",
             "targetStat":"quiddity",
-            "targetMode":"randomHero"
+            "targetMode":"randomHero",	
+            "soundEffect":"assets/sounds/Landlord-Evict.wav"
         },
         {
             "id":"powerbill",
             "name":"Power Bill",
             "description":"Basic physical attack",
-            "targetMode":"allHeroes"
+            "targetMode":"allHeroes",	
+            "soundEffect":"assets/sounds/Landlord-Powerbill.wav"
         }
     ],
     "augments":[],

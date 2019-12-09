@@ -136,8 +136,9 @@ class Character extends Actor{
         spells = spells.concat(gameData.classes[gender].abilities);
         spells = spells.concat(gameData.classes[identity].abilities);
         spells = spells.concat(gameData.classes[job].abilities);
-        var firstNames = ["marla","winnefred","albert","ester","fenric","vanessa","edith"];
-        name = firstNames[randint(0,firstNames.length-1)];
+        var firstNames = ["Marla","Winifred","Albert","Ester","Fenric","Vanessa","Edith","Rene","Trilby","Sanjay","Mateo","Madeline","Stetson","Thing","Franz","Wensleydale","Petra","Marty","Emmett","Biff","Lyndon","Dick","Dolemite","Martok"];
+        var lastNames = ["Griggs","Head","Marzipan","Haberdasher","O'Hara","Stilton","StarRider","Mateo","Etoufee","Lamar","Gloop","Thing","Newstead","Hearst","Nidhogg","Goulash","Jambalaya","Power","Scriabin","Bartok"];
+        name = firstNames[randint(0,firstNames.length-1)]+" "+lastNames[randint(0,lastNames.length-1)];
     }
     function randint(min:Int, max:Int) {
         return Actor.randint(min,max);

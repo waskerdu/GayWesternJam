@@ -23,7 +23,7 @@ class BattleManager extends FlxBasic{
 
     var currentActor:Int = 0;
     var isHeroTurn:Bool = true;
-    var speed:Float = 2;
+    var speed:Float = 4;
     public function new() {
         super();
         characters = new Array<Character>();
@@ -46,6 +46,7 @@ class BattleManager extends FlxBasic{
 
     function showNotice(message:String) {
         notice.visible = true;
+        notice.y = 100;
         notice.text.text = message;
         FlxTween.tween(notice, {y:notice.y},0.5*speed, {ease: FlxEase.circOut});
         notice.y = -1000;
@@ -53,6 +54,7 @@ class BattleManager extends FlxBasic{
 
     function abilityNotice(ability:Ability, targets:Array<Actor>, source:Actor, func:(Void -> Void)) {
         notice.visible = true;
+        notice.y = 100;
         var target:String = targets[0].name;
         if(ability.targetMode == "allEnemies"){target = "All Enemies!";}
         else if(ability.targetMode == "allHeroes"){target = "All Heroes!";}
@@ -74,6 +76,7 @@ class BattleManager extends FlxBasic{
     public function startHeroPhase() {
         heroTurnNotice.visible = true;
         isHeroTurn = true;
+        heroTurnNotice.y = 100;
         FlxTween.tween(heroTurnNotice, {y:heroTurnNotice.y},0.5*speed, {ease: FlxEase.circOut, onComplete: heroPhase});
         heroTurnNotice.y = -1000;
         
@@ -82,6 +85,7 @@ class BattleManager extends FlxBasic{
     public function startEnemyPhase() {
         isHeroTurn = false;
         enemyTurnNotice.visible = true;
+        enemyTurnNotice.y = 100;
         FlxTween.tween(enemyTurnNotice, {y:enemyTurnNotice.y},0.5*speed, {ease: FlxEase.circOut, onComplete: enemyPhase});
         enemyTurnNotice.y = -1000;
         pointer.visible = false;
@@ -89,8 +93,13 @@ class BattleManager extends FlxBasic{
 
     function nextTurn(){
         if(nextSound != ""){
-            var sound = Assets.getSound(nextSound);
-            FlxG.sound.play(sound);
+            if(Assets.exists(nextSound)){
+                var sound = Assets.getSound(nextSound);
+                FlxG.sound.play(sound);
+            }
+            else{
+                trace("sound: " + nextSound + " cannot be found");
+            }
         }
         if(isHeroTurn){
             if(currentActor == characters.length){
@@ -179,6 +188,8 @@ class BattleManager extends FlxBasic{
         if(message != null){
             trace(message);
             showNotice(message);
+            var sound = Assets.getSound("assets/sounds/Menu-Deny.wav");
+            FlxG.sound.play(sound);
             return;
         }
         characterMenu.clearContents();
