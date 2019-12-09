@@ -38,7 +38,7 @@ class Character extends Actor{
         hatSprite.loadGraphic("assets/images/Heads.png", true, 100, 100);
         bottomSprite = new FlxSprite();
         add(bottomSprite);
-        bottomSprite.loadGraphic("assets/images/PowerBottoms.png", true, 140, 200);
+        bottomSprite.loadGraphic("assets/images/PowerBottoms2.png", true, 140, 200);
         bottomSprite.scale.x = 0.8;
         bottomSprite.scale.y = 0.8;
         topSprite = new FlxSprite();
@@ -152,8 +152,6 @@ class Character extends Actor{
         //gameData.classes[gender].name+" "+
         gameData.classes[job].name);
         statArray.push(gameData.classes[job].description);
-        //trace(job);
-        //trace(gameData.classes[job].description);
         statArray.push("Sass: "+Math.floor(stats["sass"]));
         statArray.push("used for physical attacks");
         statArray.push("Wit: "+Math.floor(stats["wit"]));
@@ -169,7 +167,6 @@ class Character extends Actor{
     }
 
     function ability(name:String) {
-        //trace(name);
         return new MenuOption(
             //gameData.abilities[name].name + " Cost: " + gameData.abilities[name].cost, 
             gameData.abilities[name].cost == 0? gameData.abilities[name].name :

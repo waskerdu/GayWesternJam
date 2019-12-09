@@ -35,7 +35,9 @@
             "name":"Attack!",
             "description":"Basic physical attack",
             "mainStat":"sass",
-            "soundEffect":"assets/sounds/Player-Attack.wav"
+            "soundEffect":"assets/sounds/Player-Attack.wav",
+            "animation":"melee",
+            "targetAnimation":"knockback"
         },
         {
             "id":"defend",
@@ -55,7 +57,7 @@
             "description":"Boost party attack power",
             "power":-1,
             "cost":2,
-            "targetStat":"wit",
+            "targetStat":"sass",
             "defendStat":"none",
             "duration":1,
             "targetMode":"allHeroes",
@@ -108,7 +110,8 @@
             "description":"Basic physical attack",
             "mainStat":"sass",
             "targetMode":"allHeroes",
-            "soundEffect":"assets/sounds/Pig-Oink.wav"
+            "soundEffect":"assets/sounds/Pig-Oink.wav",
+            "animation":"knockback"
         },
         {
             "id":"womp",
@@ -117,7 +120,9 @@
             "mainStat":"sass",
             "targetMode":"randomHero",
             "power":2,
-            "soundEffect":"assets/sounds/Pig-Womp.wav"
+            "soundEffect":"assets/sounds/Pig-Womp.wav",
+            "animation":"melee",
+            "targetAnimation":"knockback"
         },
         {
             "id":"evict",
@@ -144,13 +149,13 @@
             "id":"pig",
             "name":"Pig",
             "description":"",
-            "sprite":"assets/images/Popo.png",
+            "sprite":"assets/images/Popobetter.png",
             "stats":[
                 "sass",8,
                 "wit",1,
                 "moxie",6,
                 "flair",5,
-                "realness",100
+                "realness",60
             ],
             "chains":[
                 ["oink"],

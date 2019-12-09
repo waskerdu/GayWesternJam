@@ -18,6 +18,11 @@ class Label extends FlxGroup{
         add(text);
     }
 
+    public function setText(newText:String) {
+        text.text = newText;
+        text.fieldWidth = sprite.width;
+    }
+
     override function update(elapsed:Float) {
         sprite.x = x;
         sprite.y = y;

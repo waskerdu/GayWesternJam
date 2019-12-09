@@ -84,7 +84,6 @@ class StatScreen extends FlxGroup{
         tips.resize(0);
         for (i in 0...strings.length){
             var str = strings[i];
-            //trace(str);
             if(i%2 == 1){tips.push(str); continue;}
             var field = getField();
             if(i == 0){field.size = 16;}

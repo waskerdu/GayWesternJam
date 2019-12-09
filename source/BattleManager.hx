@@ -19,7 +19,7 @@ class BattleManager extends FlxBasic{
     public var notice:Label;
     public var buttonPool:FlxTypedGroup<Button>;
     public var characterMenu:CharacterMenu;
-    public var nextSound:String = "";
+    public var nextSound:String = "none";
 
     var currentActor:Int = 0;
     var isHeroTurn:Bool = true;
@@ -47,23 +47,23 @@ class BattleManager extends FlxBasic{
     function showNotice(message:String) {
         notice.visible = true;
         notice.y = 100;
-        notice.text.text = message;
+        notice.setText(message);
         FlxTween.tween(notice, {y:notice.y},0.5*speed, {ease: FlxEase.circOut});
         notice.y = -1000;
     }
 
-    function abilityNotice(ability:Ability, targets:Array<Actor>, source:Actor, func:(Void -> Void)) {
+    function abilityNotice(ability:Ability, targets:Array<Actor>, source:Actor) {
         notice.visible = true;
         notice.y = 100;
         var target:String = targets[0].name;
         if(ability.targetMode == "allEnemies"){target = "All Enemies!";}
         else if(ability.targetMode == "allHeroes"){target = "All Heroes!";}
         else if(ability.targetMode == "self"){target = "Themself!";}
-        notice.text.text = source.name + " used\n" + ability.name + "\non " + target;
+        notice.setText(source.name + " used " + ability.name + " on " + target);
         FlxTween.tween(notice, {y:notice.y},0.5*speed, {ease: FlxEase.circOut, onComplete: 
             function (tween:FlxTween){
                 notice.visible = false;
-                func();
+                //func();
             }
         });
         notice.y = -1000;
@@ -77,6 +77,7 @@ class BattleManager extends FlxBasic{
         heroTurnNotice.visible = true;
         isHeroTurn = true;
         heroTurnNotice.y = 100;
+        currentActor = 0;
         FlxTween.tween(heroTurnNotice, {y:heroTurnNotice.y},0.5*speed, {ease: FlxEase.circOut, onComplete: heroPhase});
         heroTurnNotice.y = -1000;
         
@@ -84,6 +85,7 @@ class BattleManager extends FlxBasic{
 
     public function startEnemyPhase() {
         isHeroTurn = false;
+        currentActor = 0;
         enemyTurnNotice.visible = true;
         enemyTurnNotice.y = 100;
         FlxTween.tween(enemyTurnNotice, {y:enemyTurnNotice.y},0.5*speed, {ease: FlxEase.circOut, onComplete: enemyPhase});
@@ -92,15 +94,6 @@ class BattleManager extends FlxBasic{
     }
 
     function nextTurn(){
-        if(nextSound != ""){
-            if(Assets.exists(nextSound)){
-                var sound = Assets.getSound(nextSound);
-                FlxG.sound.play(sound);
-            }
-            else{
-                trace("sound: " + nextSound + " cannot be found");
-            }
-        }
         for(i in 0...characters.length){
             if(characters[i].stats["realness"] <= 0){
                 characters[i].kill();
@@ -127,7 +120,6 @@ class BattleManager extends FlxBasic{
         if(enemies.length == 0){FlxG.switchState(new WinScene());}
         if(isHeroTurn){
             if(currentActor == characters.length){
-                currentActor = 0;
                 startEnemyPhase();
             }
             else{
@@ -137,7 +129,6 @@ class BattleManager extends FlxBasic{
         }
         else{
             if(currentActor == enemies.length){
-                currentActor = 0;
                 startHeroPhase();
             }
             else{
@@ -145,6 +136,7 @@ class BattleManager extends FlxBasic{
                 //currentActor++;
             }
         }
+        
     }
 
     function heroPhase(tween:FlxTween) {
@@ -208,17 +200,16 @@ class BattleManager extends FlxBasic{
             trace("target mode "+ability.targetMode+" is not valid");
             return;
         }
-        message = ability.use(targets, character);
+        message = ability.use(targets, character, 0.5*speed, nextTurn);
         if(message != null){
-            //trace(message);
             showNotice(message);
             var sound = Assets.getSound("assets/sounds/Menu-Deny.wav");
             FlxG.sound.play(sound);
             return;
         }
         characterMenu.clearContents();
-        abilityNotice(ability, targets, character, nextTurn);
-        nextSound = ability.soundEffect;
+        abilityNotice(ability, targets, character);
+        //nextSound = ability.soundEffect;
         currentActor++;
         /*currentPlayer++;
         if(currentPlayer == characters.length){currentPlayer = 0; startEnemyPhase();}
