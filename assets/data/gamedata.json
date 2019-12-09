@@ -17,9 +17,16 @@
         {
             "id":"ficWriter",
             "name":"Fanfic Author",
-            "description":"They write fan fiction. You can guess what kind.",
+            "description":"They write fan fiction.\nYou can guess what kind.",
             "type":"job",
             "abilities":["ship","purpleProse"]
+        },
+        {
+            "id":"battleBarista",
+            "name":"Battle Barista",
+            "description":"A noble clan.",
+            "type":"job",
+            "abilities":["caffinate"]
         }
     ],
     "abilities":[
@@ -40,6 +47,18 @@
             "defendStat":"none",
             "duration":1,
             "targetMode":"self",
+            "soundEffect":"assets/sounds/Player-Defend.wav"
+        },
+        {
+            "id":"caffinate",
+            "name":"Caffinate",
+            "description":"Boost party attack power",
+            "power":-1,
+            "cost":2,
+            "targetStat":"wit",
+            "defendStat":"none",
+            "duration":1,
+            "targetMode":"allHeroes",
             "soundEffect":"assets/sounds/Player-Defend.wav"
         },
         {
@@ -81,7 +100,7 @@
             "cost":2,
             "augments":["sugar"],
             "targetMode":"allEnemies",
-            "soundEffect":"assets/sounds/Player-PupleProse.wav"
+            "soundEffect":"assets/sounds/Player-PurpleProse.wav"
         },
         {
             "id":"oink",
@@ -131,7 +150,7 @@
                 "wit",1,
                 "moxie",6,
                 "flair",5,
-                "realness",500
+                "realness",100
             ],
             "chains":[
                 ["oink"],

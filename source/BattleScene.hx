@@ -24,7 +24,7 @@ class BattleScene extends FlxState
 		gameSave.bind("global");
 		statScreen = new StatScreen();
 		FlxG.sound.playMusic(AssetPaths.ChooChoo_Track02Batle__ogg);
-		trace(FlxG.sound.music);
+		//trace(FlxG.sound.music);
 		statScreen.sprite.makeGraphic(320,160, FlxColor.GRAY);
 		statScreen.y = 600-160;
 		characterMenu = new CharacterMenu();

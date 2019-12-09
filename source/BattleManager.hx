@@ -101,6 +101,30 @@ class BattleManager extends FlxBasic{
                 trace("sound: " + nextSound + " cannot be found");
             }
         }
+        for(i in 0...characters.length){
+            if(characters[i].stats["realness"] <= 0){
+                characters[i].kill();
+                characters[i] = null;
+            }
+        }
+        characters = characters.filter(
+            function (char){
+                return char != null;
+            }
+        );
+        if(characters.length == 0){FlxG.switchState(new LoseScene());}
+        for(i in 0...enemies.length){
+            if(enemies[i].stats["realness"] <= 0){
+                enemies[i].kill();
+                enemies[i] = null;
+            }
+        }
+        enemies = enemies.filter(
+            function (char){
+                return char != null;
+            }
+        );
+        if(enemies.length == 0){FlxG.switchState(new WinScene());}
         if(isHeroTurn){
             if(currentActor == characters.length){
                 currentActor = 0;
@@ -186,7 +210,7 @@ class BattleManager extends FlxBasic{
         }
         message = ability.use(targets, character);
         if(message != null){
-            trace(message);
+            //trace(message);
             showNotice(message);
             var sound = Assets.getSound("assets/sounds/Menu-Deny.wav");
             FlxG.sound.play(sound);

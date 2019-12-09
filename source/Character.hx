@@ -148,6 +148,12 @@ class Character extends Actor{
         var statArray = new Array<String>();
         statArray.push(name);
         statArray.push("");
+        statArray.push(//gameData.classes[identity].name +" "+
+        //gameData.classes[gender].name+" "+
+        gameData.classes[job].name);
+        statArray.push(gameData.classes[job].description);
+        //trace(job);
+        //trace(gameData.classes[job].description);
         statArray.push("Sass: "+Math.floor(stats["sass"]));
         statArray.push("used for physical attacks");
         statArray.push("Wit: "+Math.floor(stats["wit"]));
@@ -163,6 +169,7 @@ class Character extends Actor{
     }
 
     function ability(name:String) {
+        //trace(name);
         return new MenuOption(
             //gameData.abilities[name].name + " Cost: " + gameData.abilities[name].cost, 
             gameData.abilities[name].cost == 0? gameData.abilities[name].name :

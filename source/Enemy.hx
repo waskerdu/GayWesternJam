@@ -22,8 +22,6 @@ class Enemy extends Actor{
         for (chain in chainList){
             chains.push(chain);
         }
-        //sprite.loadGraphic(data.sprite);
-        trace(data.sprite);
         if(data.sprite != ""){sprite.loadGraphic(data.sprite);}
     }
 
@@ -33,10 +31,6 @@ class Enemy extends Actor{
             for (i in 0...chains.length){chainOrder.push(i);}
             chainOrder = shuffleInt(chainOrder);
         }
-        trace(chainOrder);
-        trace(chains[currentChain][currentLink]);
-        trace(currentLink);
-        trace(currentChain);
         abilityCallback(gameData.abilities[ chains[currentChain][currentLink] ], this);
         currentLink++;
         if(currentLink == chains[currentChain].length){currentLink = 0; currentChain++;}
