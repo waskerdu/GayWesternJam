@@ -107,7 +107,7 @@ class Ability extends FlxBasic{
         }
         else{
             Timer.delay(play, Math.round(delay * 1000));
-            done(null);
+            sendCallback = true;
         }
     }
 

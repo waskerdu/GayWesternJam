@@ -63,7 +63,6 @@ class BattleManager extends FlxBasic{
         FlxTween.tween(notice, {y:notice.y},0.5*speed, {ease: FlxEase.circOut, onComplete: 
             function (tween:FlxTween){
                 notice.visible = false;
-                //func();
             }
         });
         notice.y = -1000;
@@ -80,7 +79,6 @@ class BattleManager extends FlxBasic{
         currentActor = 0;
         FlxTween.tween(heroTurnNotice, {y:heroTurnNotice.y},0.5*speed, {ease: FlxEase.circOut, onComplete: heroPhase});
         heroTurnNotice.y = -1000;
-        
     }
 
     public function startEnemyPhase() {
@@ -124,7 +122,6 @@ class BattleManager extends FlxBasic{
             }
             else{
                 heroTurn();
-                //currentActor++;
             }
         }
         else{
@@ -133,10 +130,8 @@ class BattleManager extends FlxBasic{
             }
             else{
                 enemyTurn();
-                //currentActor++;
             }
         }
-        
     }
 
     function heroPhase(tween:FlxTween) {
@@ -209,10 +204,6 @@ class BattleManager extends FlxBasic{
         }
         characterMenu.clearContents();
         abilityNotice(ability, targets, character);
-        //nextSound = ability.soundEffect;
         currentActor++;
-        /*currentPlayer++;
-        if(currentPlayer == characters.length){currentPlayer = 0; startEnemyPhase();}
-        heroTurn();*/
 	}
 }

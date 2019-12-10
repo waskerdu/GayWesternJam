@@ -52,7 +52,7 @@ class BattleScene extends FlxState
 		for (i in 0...4){
 			var char = new Character(gameData);
 			char.x = 800-90 * (i+1);
-			char.y = i * 70;
+			char.y = i * 70 + 10;
 			char.randomize();
 			char.statCallback = statScreen.setContents;
 			char.menuCallback = characterMenu.setContents;
@@ -62,7 +62,8 @@ class BattleScene extends FlxState
 		}
 		for (i in 0...1){
 			var enemy = new Enemy(gameData);
-			enemy.loadData(gameData.enemies["pig"]);
+			if(Actor.randint(0,1) == 0){enemy.loadData(gameData.enemies["landlady"]);}
+			else{enemy.loadData(gameData.enemies["pig"]);}
 			enemy.x = 0;
 			enemy.y = 100 + i * 60;
 			enemy.statCallback = statScreen.setContents;

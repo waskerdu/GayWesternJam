@@ -130,14 +130,17 @@
             "description":"Basic physical attack",
             "targetStat":"quiddity",
             "targetMode":"randomHero",	
-            "soundEffect":"assets/sounds/Landlord-Evict.wav"
+            "soundEffect":"assets/sounds/Landlord-Evict.wav",
+            "animation":"melee",
+            "targetAnimation":"knockback"
         },
         {
             "id":"powerbill",
             "name":"Power Bill",
             "description":"Basic physical attack",
             "targetMode":"allHeroes",	
-            "soundEffect":"assets/sounds/Landlord-Powerbill.wav"
+            "soundEffect":"assets/sounds/Landlord-Powerbill.wav",
+            "animation":"knockback"
         }
     ],
     "augments":[],
@@ -163,16 +166,16 @@
             ]
         },
         {
-            "id":"landlord",
-            "name":"Landlord",
+            "id":"landlady",
+            "name":"Landlady",
             "description":"",
-            "sprite":"",
+            "sprite":"assets/images/landlady.png",
             "stats":[
                 "sass",2,
                 "wit",8,
                 "moxie",3,
                 "flair",5,
-                "realness",300
+                "realness",50
             ],
             "chains":[
                 ["evict"],
