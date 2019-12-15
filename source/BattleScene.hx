@@ -62,7 +62,7 @@ class BattleScene extends FlxState
 		}
 		for (i in 0...1){
 			var enemy = new Enemy(gameData);
-			if(Actor.randint(0,1) == 0){enemy.loadData(gameData.enemies["landlady"]);}
+			if(Actor.randint(0,1) == 0){enemy.loadData(gameData.enemies["pig"]);}
 			else{enemy.loadData(gameData.enemies["pig"]);}
 			enemy.x = 0;
 			enemy.y = 100 + i * 60;

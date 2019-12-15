@@ -10,8 +10,8 @@ class CharacterMenu extends FlxGroup{
     static public var vPadding:Float = 5;
     public var x:Float;
     public var y:Float;
-    var buttons:Array<Button>;
     var buttonPool:FlxTypedGroup<Button>;
+    var linePool:FlxTypedGroup<FlxText>;
     var quidString:FlxText;
     var realString:FlxText;
     var nameString:FlxText;
@@ -21,35 +21,17 @@ class CharacterMenu extends FlxGroup{
         super();
         this.x = x;
         this.y = y;
-        buttons = new Array<Button>();
+        linePool = new FlxTypedGroup<FlxText>();
         buttonPool = new FlxTypedGroup<Button>();
         sprite = new FlxSprite();
-        quidString = new FlxText();
-        quidString.size = 16;
-        quidString.color = FlxColor.BLACK;
-        realString = new FlxText();
-        realString.size = 16;
-        realString.color = FlxColor.BLACK;
-        nameString = new FlxText();
-        nameString.size = 16;
-        nameString.color = FlxColor.BLACK;
         add(sprite);
         add(buttonPool);
-        add(nameString);
-        add(quidString);
-        add(realString);
+        add(linePool);
     }
 
     override function update(elapsed:Float) {
         sprite.x = x;
         sprite.y = y;
-        nameString.x = x + sprite.width - nameString.width;
-        nameString.y = y;
-        quidString.x = x + sprite.width - quidString.width;
-        quidString.y = y + nameString.height;
-        realString.x = x + sprite.width - realString.width;
-        realString.y = y + nameString.height + quidString.height;
-
         super.update(elapsed);
     }
 
@@ -62,16 +44,30 @@ class CharacterMenu extends FlxGroup{
         return button;
     }
 
-    public function clearContents() {
-        buttonPool.forEach(function(button){button.kill();});
-        buttons.resize(0);
+    function getLine(){
+        var line = linePool.recycle();
+        if(line == null){
+            line = new FlxText();
+            linePool.add(line);
+        }
+        return line;
     }
 
-    public function setContents(contents:Array<MenuOption>,name:String, realness:String, quiddity:String) {
+    public function clearContents() {
+        buttonPool.forEach(function(button){button.kill();});
+        linePool.forEach(function(line){line.kill();});
+    }
+
+    public function setContents(contents:Array<MenuOption>, lines:Array<String>) {
         clearContents();
-        nameString.text = name;
-        realString.text = realness;
-        quidString.text = quiddity;
+        for (i in 0...lines.length){
+            var line = getLine();
+            line.text = lines[i];
+            line.size = 16; 
+            line.color = FlxColor.BLACK;
+            line.x = x + sprite.width - line.width;
+            line.y = y + i * line.height;
+        }
         for(i in 0...contents.length){
             var button = getButton();
             button.text.text = contents[i].name;
@@ -79,7 +75,7 @@ class CharacterMenu extends FlxGroup{
             button.sprite.makeGraphic(100, 16, FlxColor.YELLOW);
             button.callback = contents[i].func;
             button.arg = contents[i].arg;
-            buttons.push(button);
+            //buttons.push(button);
             button.x = x;
             button.y = y + 20*i;
         }

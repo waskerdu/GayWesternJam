@@ -182,5 +182,86 @@
                 ["powerbill"]
             ]
         }
+    ],
+    "images":[
+        {
+            "id":"pig",
+            "filename":"assets/images/pig.png",
+            "width":0,
+            "height":0,
+            "maxFrames":0,
+            "offsetX":0,
+            "offsetY":0
+        },
+        {
+            "id":"landlady",
+            "filename":"assets/images/landlady.png",
+            "width":0,
+            "height":0,
+            "maxFrames":0,
+            "offsetX":0,
+            "offsetY":0
+        },
+        {
+            "id":"bottoms",
+            "filename":"assets/images/PowerBottoms2.png",
+            "width":140,
+            "height":200,
+            "maxFrames":0,
+            "offsetX":-20,
+            "offsetY":130
+        },
+        {
+            "id":"tops",
+            "filename":"assets/images/PowerTops.png",
+            "width":180,
+            "height":150,
+            "maxFrames":0,
+            "offsetX":-30,
+            "offsetY":40
+        },
+        {
+            "id":"heads",
+            "filename":"assets/images/Heads.png",
+            "width":100,
+            "height":100,
+            "maxFrames":0,
+            "offsetX":-30,
+            "offsetY":40
+        }
+    ],
+    "music":[
+        {
+            "id":"menu",
+            "name":"Title Screen",
+            "filename":"assets/music/ChooChoo-Track01TitleScreen.ogg",
+            "loop":true
+        },
+        {
+            "id":"battle",
+            "name":"Battle",
+            "filename":"assets/music/ChooChoo-Track02Batle.ogg",
+            "loop":true
+        },
+        {
+            "id":"win",
+            "name":"Win Music",
+            "filename":"assets/music/ChooChoo-Track03Win.ogg",
+            "loop":false
+        },
+        {
+            "id":"lose",
+            "name":"Lose Music",
+            "filename":"assets/music/ChooChoo-Track04Lose.ogg",
+            "loop":false
+        }
+    ],
+    "soundEffects":[
+        {
+            "id":"landlordEvict",
+            "name":"Landlord Evict",
+            "filename":"assets/sounds/Landlord-Evict.wav",
+            "loop":false
+        }
     ]
 }

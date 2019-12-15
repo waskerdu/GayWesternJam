@@ -13,8 +13,9 @@ class Character extends Actor{
     var job:String;
     var identity:String;
     var gender:String;
+    var title:String = "";
     //public var statCallback:(Array<String> -> Void);
-    public var menuCallback:(Array<MenuOption> -> String -> String -> String -> Void);
+    public var menuCallback:(Array<MenuOption> -> Array<String> -> Void);
     //public var abilityCallback:(ability:Ability, character:Character);
     //var name = "Name";
     public function new(gameData:GameData, x:Float = 0, y:Float = 0) {
@@ -139,6 +140,7 @@ class Character extends Actor{
         var firstNames = ["Marla","Winifred","Albert","Ester","Fenric","Vanessa","Edith","Rene","Trilby","Sanjay","Mateo","Madeline","Stetson","Thing","Franz","Wensleydale","Petra","Marty","Emmett","Biff","Lyndon","Dick","Dolemite","Martok"];
         var lastNames = ["Griggs","Head","Marzipan","Haberdasher","O'Hara","Stilton","StarRider","Mateo","Etoufee","Lamar","Gloop","Thing","Newstead","Hearst","Nidhogg","Goulash","Jambalaya","Power","Scriabin","Bartok"];
         name = firstNames[randint(0,firstNames.length-1)]+" "+lastNames[randint(0,lastNames.length-1)];
+        title = gameData.classes[job].name;
     }
     function randint(min:Int, max:Int) {
         return Actor.randint(min,max);
@@ -148,9 +150,7 @@ class Character extends Actor{
         var statArray = new Array<String>();
         statArray.push(name);
         statArray.push("");
-        statArray.push(//gameData.classes[identity].name +" "+
-        //gameData.classes[gender].name+" "+
-        gameData.classes[job].name);
+        statArray.push(title);
         statArray.push(gameData.classes[job].description);
         statArray.push("Sass: "+Math.floor(stats["sass"]));
         statArray.push("used for physical attacks");
@@ -203,6 +203,11 @@ class Character extends Actor{
                 "main"
             ));
         }
-        menuCallback(menuEntries, name, "Realness: "+Math.floor(stats["realness"]), "Quiddity: "+Math.floor(stats["quiddity"]));
+        var fields = new Array<String>();
+        fields.push(name);
+        fields.push(title);
+        fields.push("Realness: "+Math.floor(stats["realness"]));
+        fields.push("Quiddity: "+Math.floor(stats["quiddity"]));
+        menuCallback(menuEntries, fields);
     }
 }

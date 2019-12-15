@@ -3,18 +3,17 @@ package;
 import openfl.Assets;
 import flixel.FlxBasic;
 
+class Music {
+    public var id:String;
+    public var name:String;
+    public var fileName:String;
+    public var loop:Bool;
+    public function new() {
+        
+    }
+}
+
 class GameData extends FlxBasic{
-    /*
-    "classes":[],
-    "genders":[],
-    "identies":[],
-    "jobs":[],
-    "abilities":[],
-    "augments":[],
-    "elements":[],
-    "weaknesses":[],
-    "items":[],
-    "enemies":[]*/
     public var classes:Map<String,CharacterClass>;
     public var genders:Array<String>;
     public var identities:Array<String>;
@@ -25,6 +24,7 @@ class GameData extends FlxBasic{
     public var weaknesses:Array<String>;
     public var items:Array<String>;
     public var enemies:Map<String,Dynamic>;
+    public var music:Array<Music>;
 
     public function new() {
         super();
@@ -51,6 +51,16 @@ class GameData extends FlxBasic{
         tempArray = data.enemies;
         for (i in 0...tempArray.length){
             enemies[tempArray[i].id] = tempArray[i];
+        }
+        music = new Array<Music>();
+        tempArray = data.music;
+        for (i in 0...tempArray.length){
+            var m = new Music();
+            m.id = tempArray[i].id;
+            m.name = tempArray[i].name;
+            m.fileName = tempArray[i].filename;
+            m.loop = tempArray[i].loop;
+            music.push(m);
         }
     }
 }
